@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-05-12T08:55:23.302Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="jNrOC7nkvtIguqpwVe6W" version="21.2.9" type="github">
+<mxfile host="app.diagrams.net" modified="2023-05-12T09:29:53.401Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="95frMG6kr0pb8CY4M0O_" version="21.2.9" type="github">
   <diagram name="Page-1" id="sjT9tlR0PRKU1ngQ0Rxi">
-    <mxGraphModel dx="1050" dy="1641" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2163" dy="1776" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -148,10 +148,10 @@
           <mxGeometry x="50" y="270" width="380" height="60" as="geometry" />
         </mxCell>
         <mxCell id="T6eJZV-x-4OZGxT4Wl8p-16" value="TrackItem" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="270" y="810" width="120" height="60" as="geometry" />
+          <mxGeometry x="580" y="890" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="T6eJZV-x-4OZGxT4Wl8p-17" value="TrackType" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="430" y="810" width="120" height="60" as="geometry" />
+          <mxGeometry x="710" y="890" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="T6eJZV-x-4OZGxT4Wl8p-18" value="TrackStorage" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="710" y="810" width="120" height="60" as="geometry" />
@@ -160,19 +160,37 @@
           <mxGeometry x="570" y="810" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="T6eJZV-x-4OZGxT4Wl8p-20" value="Achievment" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="270" y="900" width="120" height="60" as="geometry" />
+          <mxGeometry x="-350" y="820" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="T6eJZV-x-4OZGxT4Wl8p-21" value="RequiredAchievment" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="150" y="980" width="120" height="60" as="geometry" />
+          <mxGeometry x="-350" y="900" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="T6eJZV-x-4OZGxT4Wl8p-23" value="AchievmentType" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="300" y="980" width="120" height="60" as="geometry" />
+          <mxGeometry x="-200" y="900" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="T6eJZV-x-4OZGxT4Wl8p-24" value="AchievmentStorageItem" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="420" y="900" width="160" height="60" as="geometry" />
+          <mxGeometry x="-200" y="820" width="160" height="60" as="geometry" />
         </mxCell>
         <mxCell id="T6eJZV-x-4OZGxT4Wl8p-25" value="AchievmentStorage" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="610" y="900" width="120" height="60" as="geometry" />
+          <mxGeometry x="-60" y="900" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="T6eJZV-x-4OZGxT4Wl8p-26" value="Community" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-530" y="503" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="T6eJZV-x-4OZGxT4Wl8p-27" value="Membership" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-390" y="503" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="T6eJZV-x-4OZGxT4Wl8p-28" value="Suggestion" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-530" y="650" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="T6eJZV-x-4OZGxT4Wl8p-29" value="Vote" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-390" y="650" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="T6eJZV-x-4OZGxT4Wl8p-30" value="Reaction" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-530" y="573" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="T6eJZV-x-4OZGxT4Wl8p-31" value="ReactionType" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-390" y="573" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
