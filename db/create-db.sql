@@ -13,13 +13,15 @@ CREATE DATABASE greendy
     IS_TEMPLATE = False;
 
 
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 -- Table: public.Role
 
 -- DROP TABLE IF EXISTS public."Role";
 
 CREATE TABLE IF NOT EXISTS public."Role"
 (
-    "RoleId" uuid NOT NULL,
+    "RoleId" uuid NOT NULL DEFAULT uuid_generate_v4(),
     "Name" character varying(50) COLLATE pg_catalog."default" NOT NULL,
     "LastModifiedDate" timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "PK_Role" PRIMARY KEY ("RoleId")
@@ -36,14 +38,14 @@ ALTER TABLE IF EXISTS public."Role"
 
 CREATE TABLE IF NOT EXISTS public."User"
 (
-    "UserId" uuid NOT NULL,
+    "UserId" uuid NOT NULL DEFAULT uuid_generate_v4(),
     "FirstName" character varying(50) COLLATE pg_catalog."default" NOT NULL,
     "LastName" character varying(50) COLLATE pg_catalog."default" NOT NULL,
     "UserName" character varying(100) COLLATE pg_catalog."default",
     "Email" character varying(100) COLLATE pg_catalog."default" NOT NULL,
     "PhoneNumber" character varying(20) COLLATE pg_catalog."default",
     "PasswordHash" character varying(128) COLLATE pg_catalog."default" NOT NULL,
-    "Salt" character varying(128) COLLATE pg_catalog."default" NOT NULL,
+    "Salt" bytea NOT NULL,
     "LastModifiedDate" timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "PK_User" PRIMARY KEY ("UserId")
 )
@@ -59,7 +61,7 @@ ALTER TABLE IF EXISTS public."User"
 
 CREATE TABLE IF NOT EXISTS public."UserRole"
 (
-    "UserRoleId" uuid NOT NULL,
+    "UserRoleId" uuid NOT NULL DEFAULT uuid_generate_v4(),
     "UserId" uuid NOT NULL,
     "RoleId" uuid NOT NULL,
     CONSTRAINT "PK_UserRole" PRIMARY KEY ("UserRoleId"),

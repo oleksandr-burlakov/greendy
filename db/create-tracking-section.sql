@@ -4,7 +4,7 @@
 
 CREATE TABLE IF NOT EXISTS public."TrackItemCategory"
 (
-    "TrackItemCategoryId" uuid NOT NULL,
+    "TrackItemCategoryId" uuid NOT NULL DEFAULT uuid_generate_v4(),
     "Name" character varying(80) COLLATE pg_catalog."default" NOT NULL,
     "LastModifiedDate" timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "PK_TrackItemCategory" PRIMARY KEY ("TrackItemCategoryId")
@@ -21,7 +21,7 @@ ALTER TABLE IF EXISTS public."TrackItemCategory"
 
 CREATE TABLE IF NOT EXISTS public."TrackItem"
 (
-    "TrackItemId" uuid NOT NULL,
+    "TrackItemId" uuid NOT NULL DEFAULT uuid_generate_v4(),
     "Name" character varying(80) COLLATE pg_catalog."default" NOT NULL,
     "Description" text COLLATE pg_catalog."default",
     "TrackItemCategoryId" uuid,
@@ -45,7 +45,7 @@ ALTER TABLE IF EXISTS public."TrackItem"
 
 CREATE TABLE IF NOT EXISTS public."UserTrackItem"
 (
-    "UserTrackItemId" uuid NOT NULL,
+    "UserTrackItemId" uuid NOT NULL DEFAULT uuid_generate_v4(),
     "TrackItemId" uuid NOT NULL,
     "UserId" uuid NOT NULL,
     "Quantity" integer NOT NULL DEFAULT 0,
@@ -72,7 +72,7 @@ ALTER TABLE IF EXISTS public."UserTrackItem"
 
 CREATE TABLE IF NOT EXISTS public."TrackStorage"
 (
-    "TrackStorageId" uuid NOT NULL,
+    "TrackStorageId" uuid NOT NULL DEFAULT uuid_generate_v4(),
     "Name" character varying(80) COLLATE pg_catalog."default" NOT NULL,
     "Description" text COLLATE pg_catalog."default",
     "AuthorId" uuid NOT NULL,
@@ -95,7 +95,7 @@ ALTER TABLE IF EXISTS public."TrackStorage"
 
 CREATE TABLE IF NOT EXISTS public."TrackStorageItem"
 (
-    "TrackStorageItemId" uuid NOT NULL,
+    "TrackStorageItemId" uuid NOT NULL DEFAULT uuid_generate_v4(),
     "TrackStorageId" uuid NOT NULL,
     "TrackItemId" uuid NOT NULL,
     CONSTRAINT "PK_TrackStorageItem" PRIMARY KEY ("TrackStorageItemId"),
@@ -120,7 +120,7 @@ ALTER TABLE IF EXISTS public."TrackStorageItem"
 
 CREATE TABLE IF NOT EXISTS public."TrackStorageSubscription"
 (
-    "TrackStorageSubscriptionId" uuid NOT NULL,
+    "TrackStorageSubscriptionId" uuid NOT NULL DEFAULT uuid_generate_v4(),
     "TrackStorageId" uuid NOT NULL,
     "UserId" uuid NOT NULL,
     CONSTRAINT "PK_TrackStorageSubscription" PRIMARY KEY ("TrackStorageSubscriptionId"),
@@ -145,7 +145,7 @@ ALTER TABLE IF EXISTS public."TrackStorageSubscription"
 
 CREATE TABLE IF NOT EXISTS public."UserTrackItemHistoryAction"
 (
-    "UserTrackItemHistoryActionId" uuid NOT NULL,
+    "UserTrackItemHistoryActionId" uuid NOT NULL DEFAULT uuid_generate_v4(),
     "Name" character varying(50) COLLATE pg_catalog."default" NOT NULL,
     "LastModifiedDate" timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "PK_UserTrackItemHistoryAction" PRIMARY KEY ("UserTrackItemHistoryActionId")
@@ -162,7 +162,7 @@ ALTER TABLE IF EXISTS public."UserTrackItemHistoryAction"
 
 CREATE TABLE IF NOT EXISTS public."UserTrackItemHistory"
 (
-    "UserTrackItemHistoryId" uuid NOT NULL,
+    "UserTrackItemHistoryId" uuid NOT NULL DEFAULT uuid_generate_v4(),
     "UserTrackItemId" uuid NOT NULL,
     "ExecutionDate" timestamp with time zone NOT NULL,
     "UserTrackItemHistoryActionId" uuid NOT NULL,

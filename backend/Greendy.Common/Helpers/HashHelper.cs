@@ -34,7 +34,7 @@ namespace Greendy.Common.Helpers
             }
 
             var hashBytes = SHA512.HashData(plainTextWithSaltBytes);
-            return  Encoding.ASCII.GetString(hashBytes);
+            return Encoding.UTF8.GetString(hashBytes);
         }
     }
 }

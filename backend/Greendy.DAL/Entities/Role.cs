@@ -1,23 +1,15 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Greendy.DAL.Entities
+namespace Greendy.DAL;
+
+public partial class Role
 {
-    public class Role
-    {
-        public Guid RoleId { get; set; }
-        public string Name { get; set; }
-        public DateTime LastModifiedDate { get; set; }
-        public Role()
-        {
-        }
-        public Role(string name)
-        {
-            RoleId = Guid.NewGuid();
-            Name = name;
-            LastModifiedDate = DateTime.UtcNow;
-        }
-    }
+    public Guid RoleId { get; set; }
+
+    public string Name { get; set; } = null!;
+
+    public DateTime? LastModifiedDate { get; set; }
+
+    public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
 }
