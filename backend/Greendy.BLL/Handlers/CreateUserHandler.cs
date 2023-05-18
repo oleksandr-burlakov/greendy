@@ -23,16 +23,21 @@ namespace Greendy.BLL.Handlers
                 request.Email, request.PhoneNumber);
             Role role = await _context.Roles.SingleAsync(r => r.Name == request.Role);
             using var transaction = _context.Database.BeginTransaction();
-            try {
+            try
+            {
                 user = (await _context.Users.AddAsync(user)).Entity;
-                UserRole userRole = new() {
+                UserRole userRole = new()
+                {
                     RoleId = role.RoleId,
                     UserId = user.UserId
                 };
+				
                 await _context.UserRoles.AddAsync(userRole);
                 await _context.SaveChangesAsync();
                 transaction.Commit();
-            } catch (Exception ex) {
+            }
+            catch (Exception)
+            {
                 throw;
             }
             return user.UserId;

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Mail;
-using System.Text;
+﻿using System.Net.Mail;
 using Greendy.Common.Helpers;
 using Greendy.DAL.Exceptions.User;
 

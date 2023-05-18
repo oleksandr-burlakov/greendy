@@ -1,10 +1,5 @@
-using System.Security.Cryptography;
 using System.Text;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +13,7 @@ namespace Greendy.API.Controllers
 {
     [ApiController]
     [Authorize]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class AccountController : ControllerBase
     {
         private readonly IConfiguration _configuration;
@@ -28,13 +23,6 @@ namespace Greendy.API.Controllers
         {
             _configuration = configuration;
             _mediator = mediator;
-        }
-
-        [Authorize(Roles = "User, Admin")]
-        [HttpGet("CheckAuthentication")]
-        public async Task<IActionResult> IsAuthenticated() 
-        {
-            return Ok();
         }
 
         [AllowAnonymous]

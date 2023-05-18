@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Greendy.DAL", "Greendy.DAL\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Greendy.Common", "Greendy.Common\Greendy.Common.csproj", "{A64BEC0B-92DE-42F2-BD58-F61335B70A1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Greendy.Tests", "Greendy.Tests\Greendy.Tests.csproj", "{021740AD-C116-4082-8352-FF3601398D05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{A64BEC0B-92DE-42F2-BD58-F61335B70A1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A64BEC0B-92DE-42F2-BD58-F61335B70A1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A64BEC0B-92DE-42F2-BD58-F61335B70A1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{021740AD-C116-4082-8352-FF3601398D05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{021740AD-C116-4082-8352-FF3601398D05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{021740AD-C116-4082-8352-FF3601398D05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{021740AD-C116-4082-8352-FF3601398D05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
