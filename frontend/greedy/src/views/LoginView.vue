@@ -1,38 +1,59 @@
 <script>
 import { RouterLink } from 'vue-router'
-
 export default {
-    data: () => ({
-        valid: false,
-        login: "",
-        password: "",
-        nameRules: [
-            value => {
-                if (value)
-                    return true;
-                return "Login is requred.";
-            }
-        ],
-        passwordRules: [
-            value => {
-                if (value)
-                    return true;
-                return "Password is requred.";
-            },
-            value => {
-                if (value?.length >= 8)
-                    return true;
-                return "Password must be at least 8 letters.";
-            },
-            value => {
-                if (/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(value))
-                    return true;
-                return "Password must contain at leat one letter and one number.";
-            }
-        ],
-    }),
+    data() {
+		return {
+			valid: false, 
+        	login: "",
+        	password: "",
+			loginException: "",
+        	nameRules: [
+            	value => {
+                	if (value)
+                    	return true;
+                	return "Login is requred.";
+            	}
+        	],
+        	passwordRules: [
+            	value => {
+                	if (value)
+                    	return true;
+                	return "Password is requred.";
+            	},
+            	value => {
+                	if (value?.length >= 8)
+                    	return true;
+                	return "Password must be at least 8 letters.";
+            	},
+            	value => {
+                	if (/(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/.test(value))
+                    	return true;
+                	return "Password must contain at leat one letter and one number.";
+            	}
+        	],
+		}
+    },
+	methods: {	
+		makeLoginRequest() {
+			const self = this;
+			self.loginException = null;
+			this.$axios.post('/api/Account/login', {
+				login: this.login,
+				password: this.password
+			})
+				.then(function (response) {
+					localStorage.setItem('token', response.data.token);
+					self.$router.push("/home");
+				})
+				.catch(function (error) {
+					self.loginException = error.response.data.Message;
+				});
+		}	
+	},
     components: { RouterLink }
 }
+
+
 </script>
 
 <template>
@@ -46,7 +67,7 @@ export default {
                         <h1>Login to Your Account</h1>
                     </v-col>
                 </v-row>
-                <v-form v-model="valid">
+                <v-form v-model="valid" v-on:submit.prevent>
                     <v-container>
                         <v-row>
                             <v-text-field
@@ -56,6 +77,7 @@ export default {
                             required
                             variant="outlined"
                             style="margin-bottom:20px;"
+							@input="() => {loginException = null;}"
                             ></v-text-field>
                         </v-row>
                         <v-row>
@@ -66,10 +88,17 @@ export default {
                                 label="Password"
                                 variant="outlined"
                                 required
+								@input="() => {loginException = null;}"
                             ></v-text-field>
                         </v-row>
-                        <v-row>
+                        <v-row> 
+							<p v-if="loginException" class="text-error">
+								{{ loginException}}
+							</p>
                             <v-btn
+								type="submit"
+								:disabled="!valid"
+								@click="makeLoginRequest"
                                 variant="flat"
                                 color="primary"
                                 block

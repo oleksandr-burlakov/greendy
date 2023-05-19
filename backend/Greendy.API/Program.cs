@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Greendy.BLL.Configuration;
 using System.Text;
-
+using Greendy.API;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -33,6 +34,19 @@ builder.Services.AddDbContext<GreendyContext>(options => options.UseNpgsql(build
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 builder.Services.ConfigureMediatr();
 
+var corsPolicyName = "_allowCorsAnywhere";
+
+builder.Services.AddCors(options =>
+	{
+		options.AddPolicy(name: corsPolicyName,
+			policy =>
+				{
+					policy.AllowAnyHeader()
+						.AllowAnyMethod()
+						.AllowAnyOrigin();
+				});
+	});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -42,8 +56,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.ConfiugureExceptionHandler();
 
+app.UseHttpsRedirection();
+app.UseCors(corsPolicyName);
 app.UseAuthentication();
 app.UseRouting();
 app.UseAuthorization();
