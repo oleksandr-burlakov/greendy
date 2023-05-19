@@ -5,7 +5,7 @@ namespace Greendy.DAL;
 
 public partial class TrackItemCategory
 {
-    public Guid TrackItemCategoryId { get; set; }
+    public Guid TrackItemCategoryId { get; set; } = Guid.NewGuid();
 
     public string Name { get; set; } = null!;
 

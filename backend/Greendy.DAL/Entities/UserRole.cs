@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Greendy.DAL;
+﻿namespace Greendy.DAL;
 
 public partial class UserRole
 {
-    public Guid UserRoleId { get; set; }
+    public Guid UserRoleId { get; set; } = Guid.NewGuid();
 
     public Guid UserId { get; set; }
 

@@ -31,7 +31,7 @@ namespace Greendy.API.Controllers
         {
             var isUserAlreadyExists = await _mediator.Send(new IsUserWithUsernameExistsQuery(model.Username));
             if (isUserAlreadyExists) {
-                return BadRequest($"Sorry user with this username: '{model.Username}' already exists");
+                throw new Exception($"Sorry user with this username: '{model.Username}' already exists");
             }
             var role = "Admin";
             var userId = await _mediator.Send(new CreateUserCommand(model.FirstName, model.LastName, model.Username,

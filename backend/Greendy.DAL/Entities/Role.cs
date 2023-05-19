@@ -5,7 +5,7 @@ namespace Greendy.DAL;
 
 public partial class Role
 {
-    public Guid RoleId { get; set; }
+    public Guid RoleId { get; set; } = Guid.NewGuid();
 
     public string Name { get; set; } = null!;
 

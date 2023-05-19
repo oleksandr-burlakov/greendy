@@ -5,7 +5,7 @@ namespace Greendy.DAL;
 
 public partial class UserTrackItem
 {
-    public Guid UserTrackItemId { get; set; }
+    public Guid UserTrackItemId { get; set; } = Guid.NewGuid();
 
     public Guid TrackItemId { get; set; }
 

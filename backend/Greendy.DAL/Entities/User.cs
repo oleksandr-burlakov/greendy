@@ -6,7 +6,7 @@ namespace Greendy.DAL;
 
 public partial class User
 {
-    public Guid UserId { get; set; }
+    public Guid UserId { get; set; } = Guid.NewGuid();
 
     public string FirstName { get; set; } = null!;
 
@@ -16,7 +16,7 @@ public partial class User
 
     public string Email { get; set; } = null!;
 
-    public string? PhoneNumber { get; set; }
+    public string? PhoneNumber { get; set; } = null;
 
     public string PasswordHash { get; set; } = null!;
 
