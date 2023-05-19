@@ -33,7 +33,7 @@ namespace Greendy.API.Controllers
             if (isUserAlreadyExists) {
                 throw new Exception($"Sorry user with this username: '{model.Username}' already exists");
             }
-            var role = "Admin";
+            var role = "User";
             var userId = await _mediator.Send(new CreateUserCommand(model.FirstName, model.LastName, model.Username,
                 model.Password, model.Email, model.PhoneNumber, role));
             var token = CreateToken(model.Username, role);

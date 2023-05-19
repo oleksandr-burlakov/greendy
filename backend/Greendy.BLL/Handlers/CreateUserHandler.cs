@@ -6,14 +6,17 @@ using Greendy.BLL.Commands;
 using Greendy.DAL;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.Extensions.Logging;
+
 namespace Greendy.BLL.Handlers
 {
     public class CreateUserHandler : IRequestHandler<CreateUserCommand, Guid>
     {
         private readonly GreendyContext _context;
-        public CreateUserHandler(GreendyContext context)
+		private readonly ILogger<CreateUserHandler> _logger;
+        public CreateUserHandler(GreendyContext context, ILogger<CreateUserHandler> logger)
         {
+			_logger = logger;
             _context = context;
         }
         public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
@@ -36,8 +39,9 @@ namespace Greendy.BLL.Handlers
                 await _context.SaveChangesAsync();
                 transaction.Commit();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+				_logger.LogError(default(EventId), ex, ex.Message);
                 throw;
             }
             return user.UserId;

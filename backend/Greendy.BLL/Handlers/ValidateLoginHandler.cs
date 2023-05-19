@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Greendy.BLL.Exceptions;
 using Greendy.BLL.Queries;
 using Greendy.DAL;
@@ -27,7 +23,7 @@ namespace Greendy.BLL.Handlers
                 throw new IncorrectPasswordException("Password is incorrect");
             }
             var role = user.UserRoles.Select(ur => ur.Role.Name).First();
-            return new ValidateLoginResponse(user.UserName, role);
+            return new ValidateLoginResponse(user.UserName!, role);
         }
     }
 }
