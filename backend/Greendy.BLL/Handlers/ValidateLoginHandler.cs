@@ -22,9 +22,9 @@ namespace Greendy.BLL.Handlers
             User? user = await _context.Users
                 .Include(u => u.UserRoles)
                 .ThenInclude(ur => ur.Role)
-                .FirstOrDefaultAsync(u => u.UserName == request.Login || u.Email == request.Login) ?? throw new UserNotExistsException();
+                .FirstOrDefaultAsync(u => u.UserName == request.Login || u.Email == request.Login) ?? throw new UserNotExistsException("User with this login doesn't exists");
             if (!user.CheckPassword(request.Password)) {
-                throw new IncorrectPasswordException();
+                throw new IncorrectPasswordException("Password is incorrect");
             }
             var role = user.UserRoles.Select(ur => ur.Role.Name).First();
             return new ValidateLoginResponse(user.UserName, role);

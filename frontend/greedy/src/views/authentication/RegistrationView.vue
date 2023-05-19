@@ -1,4 +1,69 @@
-<script setup>
+<script>
+	export default {
+		data() {
+			return {
+				valid: false,
+				registrationException: null,
+				firstName: "",
+				lastName: "",
+				username: "",
+				password: "",
+				email: "",
+				phoneNumber: null,
+				requiredRules: [
+					value => {
+						if (value) {
+							return true;
+						}
+						return "Field is required";
+					}
+				],
+				passwordRules: [
+					value => {
+						if (!value) {
+							return "Field is required";
+						}
+						return true;
+					},
+					value => {
+						if (value?.length >= 8)
+							return true;
+						return "Password must be at least 8 letters.";
+					},
+					value => {
+						if (/(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/.test(value))
+							return true;
+						return "Password must contain at leat one letter and one number.";
+					}
+				]
+			}
+		},
+		methods: {
+			sendRegistrationRequest() {
+				const self = this;
+				self.registrationException = null;
+				this.$axios.post('/api/Account/register', {
+					firstName: this.firstName,
+					lastName: this.lastName,
+					username: this.username,
+					password: this.password,
+					email: this.email,
+					phoneNumber: this.phoneNumber,
+				})
+				.then(function (response) {
+					localStorage.setItem('token', response.data.token);
+					self.$router.push("/home");
+				})
+				.catch(function (error) {
+					console.log(error);
+					self.registrationException = error.response.data.Message;
+				});
+			},
+			resetException() {
+				this.registrationException = null;
+			}
+		},
+	}
 </script>
 
 <template>
@@ -8,20 +73,28 @@
         <div class="left-section">
             <div class="content">
                 <h1>Create your free account</h1>
-                <v-form>
+                <v-form v-model="valid">
                     <v-row>
                         <v-col cols="6">
                             <v-text-field
+								v-model="firstName"
                                 variant="underlined"
                                 label="First name"
+								required
+								:rules="requiredRules"
+								@input="resetException()"	
                                 color="secondary"
                             >
                             </v-text-field>
                         </v-col>
                         <v-col cols="6">
                             <v-text-field
+								v-model="lastName"
                                 variant="underlined"
                                 label="Last name"
+								:rules="requiredRules"
+								required
+								@input="resetException()"	
                                 color="secondary"
                             >
                             </v-text-field>
@@ -31,7 +104,11 @@
                         <v-col cols="6">
                             <v-text-field
                                 variant="underlined"
-                                label="Login"
+								v-model="username"
+                                label="Username"
+								:rules="requiredRules"
+								required
+								@input="resetException()"	
                                 color="secondary"
                             >
                             </v-text-field>
@@ -40,7 +117,11 @@
                             <v-text-field
                                 variant="underlined"
                                 label="Password"
+								:rules="passwordRules"
+								v-model="password"
                                 type="password"
+								required
+								@input="resetException()"	
                                 color="secondary"
                             >
                             </v-text-field>
@@ -49,28 +130,41 @@
                     <v-row>
                         <v-col cols="6">
                             <v-text-field
+								v-model="email"
                                 variant="underlined"
+								:rules="requiredRules"
                                 label="Email"
                                 type="email"
+								required
+								@input="resetException()"	
                                 color="secondary"
                             >
                             </v-text-field>
                         </v-col>
                         <v-col cols="6">
                             <v-text-field
+								v-model="phoneNumber"
                                 variant="underlined"
                                 label="Phone number"
                                 type="tel"
+								@input="resetException()"	
                                 color="secondary"
                             >
                             </v-text-field>
                         </v-col>
                     </v-row>
                     <v-row>
-                        <v-col cols="12">
+						<v-col cols="12">
+							<p v-if="registrationException != null" class="text-error">
+								{{ registrationException}}
+							</p>
+						</v-col>
+						<v-col cols="12">
                             <v-btn
                                 color="primary" 
-                            block>
+								:disabled="!valid ? true : false"
+								@click="sendRegistrationRequest"
+                            	block>
                                 Next 
                                 <v-icon icon="mdi-arrow-right-thick"></v-icon>
                             </v-btn>
