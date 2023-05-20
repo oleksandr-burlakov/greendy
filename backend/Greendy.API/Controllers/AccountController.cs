@@ -25,6 +25,13 @@ namespace Greendy.API.Controllers
             _mediator = mediator;
         }
 
+		[Authorize]
+		[HttpPost("isAuthorized")]
+		public IActionResult IsAuthorized() 
+		{
+			return Ok(true);
+		}
+
         [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterViewModel model)

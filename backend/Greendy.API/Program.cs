@@ -30,7 +30,7 @@ builder.Services.AddAuthentication(options => {
         ValidateIssuer = true,
         ValidateAudience = false,
         ValidIssuer = builder.Configuration["JWT:Issuer"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]!))
     };
 });
 builder.Services.AddControllers();

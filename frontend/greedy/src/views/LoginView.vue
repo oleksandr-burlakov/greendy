@@ -1,5 +1,6 @@
 <script>
 import { RouterLink } from 'vue-router'
+import { useAuthorizationStore } from '../stores/authorization'
 export default {
     data() {
 		return {
@@ -36,16 +37,18 @@ export default {
 	methods: {	
 		makeLoginRequest() {
 			const self = this;
+			const authorization = useAuthorizationStore();
 			self.loginException = null;
 			this.$axios.post('/api/Account/login', {
 				login: this.login,
 				password: this.password
 			})
 				.then(function (response) {
-					localStorage.setItem('token', response.data.token);
+					authorization.setToken(response.data.token);
 					self.$router.push("/home");
 				})
 				.catch(function (error) {
+					console.error(error);
 					self.loginException = error.response.data.Message;
 				});
 		}	

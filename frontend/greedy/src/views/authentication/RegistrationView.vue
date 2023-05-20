@@ -52,6 +52,7 @@
 				})
 				.then(function (response) {
 					localStorage.setItem('token', response.data.token);
+					self.authorization.toggleauthorized();
 					self.$router.push("/home");
 				})
 				.catch(function (error) {

@@ -8,10 +8,9 @@ import './assets/main.css'
 
 import {createApp} from 'vue'
 import {createPinia} from 'pinia'
-
 import App from './App.vue'
 import router from './router'
-import axios from './plugins/axiosplugin';
+import axios from './plugins/axiosplugin'
 
 const myCustomLightTheme = {
 	dark: false,
@@ -35,9 +34,9 @@ const vuetify = createVuetify({
 });
 
 const app = createApp(App)
+const pinia = createPinia();
+app.use(pinia)
 app.use(vuetify)
-app.use(createPinia())
 app.use(router)
-app.use(axios);
-
+app.use(axios)
 app.mount('#app')

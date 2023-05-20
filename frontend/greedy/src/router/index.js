@@ -2,6 +2,7 @@ import {createRouter, createWebHistory} from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegistrationView from '../views/authentication/RegistrationView.vue'
+import {useAuthorizationStore} from '../stores/authorization'
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,9 +39,9 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-	let isAuthenticated = localStorage.getItem('token') != null;
+	const authorization = useAuthorizationStore();
+	let isAuthenticated = authorization.token != null;
 	if (to.name !== 'login' && to.name !== 'registration' && !isAuthenticated) {
-		console.log("Redirect to login");
 		next('/login')
 	}
 	else if ((to.name === 'login' || to.name === 'registration') && isAuthenticated) {
