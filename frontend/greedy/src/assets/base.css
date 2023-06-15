@@ -1,9 +1,9 @@
 :root {
-  --main-color: #FBFEF9;
-  --secondary-color: #FF9B71;
+  --main-color: #fbfef9;
+  --secondary-color: #ff9b71;
   --accent-color: #129490;
   --black: #051014;
-} 
+}
 
 html {
   overflow-y: auto;

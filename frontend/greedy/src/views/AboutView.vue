@@ -1,5 +1,4 @@
-<script lang="js" setup>
-	</script>
+<script lang="js" setup></script>
 
 <template>
   <div class="about">

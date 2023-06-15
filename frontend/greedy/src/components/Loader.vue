@@ -1,5 +1,5 @@
 <template>
-  <v-icon :size='iconSize' class="loader" icon="mdi-loading"></v-icon>
+  <v-icon :size="iconSize" class="loader" icon="mdi-loading"></v-icon>
 </template>
 
 <script>
@@ -7,7 +7,7 @@ export default {
   props: {
     size: 20
   },
-  name: "Loader.vue",
+  name: 'Loader.vue',
   data() {
     return {
       iconSize: this.size
@@ -40,8 +40,8 @@ export default {
   -webkit-animation: spin 1s linear infinite;
   -moz-animation: spin 1s linear infinite;
   animation: spin 1s linear infinite;
-  position:absolute;
-  top:40%;
-  left:45%;
+  position: absolute;
+  top: 40%;
+  left: 45%;
 }
 </style>

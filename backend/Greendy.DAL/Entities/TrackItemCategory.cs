@@ -11,5 +11,7 @@ public partial class TrackItemCategory
 
     public DateTime LastModifiedDate { get; set; }
 
-    public virtual ICollection<TrackItem> TrackItems { get; set; } = new List<TrackItem>();
+    public Guid? TrackStorageId { get; set; }
+    public virtual ICollection<TrackItem> TrackItems { get; set; }
+    public virtual TrackStorage? TrackStorage { get; set; }
 }

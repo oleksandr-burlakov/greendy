@@ -1,8 +1,8 @@
 <template>
   <div class="main-container">
-    <div class="side-toggler bg-primary" :class="{ 'toggle-open': sidebarVisible}">
+    <div class="side-toggler bg-primary" :class="{ 'toggle-open': sidebarVisible }">
       <div class="active-buttons">
-        <router-link to="/home" style="text-decoration: none; color:inherit;">
+        <router-link to="/home" style="text-decoration: none; color: inherit">
           <v-btn size="small" variant="text" color="white">
             <v-icon size="20" icon="mdi-home"></v-icon>
             <p v-if="sidebarVisible">Home</p>
@@ -12,7 +12,7 @@
           <v-icon size="20" icon="mdi-trophy-award"></v-icon>
           <p v-if="sidebarVisible">Achievments</p>
         </v-btn>
-        <router-link to="/tasks" style="text-decoration: none; color:inherit;">
+        <router-link to="/tasks" style="text-decoration: none; color: inherit">
           <v-btn size="small" variant="text" color="white">
             <v-icon size="20" icon="mdi-checkbox-marked-circle-auto-outline"></v-icon>
             <p v-if="sidebarVisible">Tasks</p>
@@ -38,8 +38,8 @@
         </v-btn>
       </div>
     </div>
-    <div class="center-container" :class="{ 'center-closed': sidebarVisible}">
-      <RouterView/>
+    <div class="center-container" :class="{ 'center-closed': sidebarVisible }">
+      <RouterView />
     </div>
   </div>
 </template>
@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     toggle() {
-      this.sidebarVisible = !this.sidebarVisible;
+      this.sidebarVisible = !this.sidebarVisible
     }
   }
 }
@@ -62,7 +62,7 @@ export default {
 <style scoped lang="scss">
 .center-container {
   width: 100%;
-  margin-left:50px;
+  margin-left: 50px;
   transition: margin-left 0.1s;
   &.center-closed {
     margin-left: 180px;
