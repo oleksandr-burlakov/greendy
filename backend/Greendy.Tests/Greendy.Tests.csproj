@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Greendy.DAL\Greendy.DAL.csproj" />
+    <ProjectReference Include="../Greendy.Persistance/Greendy.Persistance.csproj" />
     <ProjectReference Include="..\Greendy.BLL\Greendy.BLL.csproj" />
   </ItemGroup>
 

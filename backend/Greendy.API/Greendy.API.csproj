@@ -22,7 +22,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Greendy.BLL\Greendy.BLL.csproj" />
-    <ProjectReference Include="..\Greendy.Common\Greendy.Common.csproj" />
+    <ProjectReference Include="..\Greendy.Application\Greendy.Application.csproj" />
+    <ProjectReference Include="..\Greendy.Persistance\Greendy.Persistance.csproj" />
   </ItemGroup>
 
 </Project>

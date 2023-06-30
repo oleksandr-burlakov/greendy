@@ -1,11 +1,11 @@
-using Greendy.DAL;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Greendy.BLL.Configuration;
 using System.Text;
 using Greendy.API;
 using Serilog;
+using Greendy.Persistance;
+using Greendy.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,7 +39,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<GreendyContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("GreendyContext")));
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-builder.Services.ConfigureMediatr();
+builder.Services.ConfigureRepositories();
+builder.Services.ConfigureServices();
 
 var corsPolicyName = "_allowCorsAnywhere";
 

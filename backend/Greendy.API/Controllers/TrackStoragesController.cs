@@ -1,7 +1,7 @@
 ﻿using Greendy.API.ViewModel.TrackStorages;
 using Greendy.API.ViewModels.TrackStorages;
-using Greendy.BLL.Commands.TrackStorages;
-using Greendy.BLL.Queries.TrackStorage;
+using Greendy.Application.DTO.TrackStorage;
+using Greendy.Application.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,41 +13,39 @@ namespace Greendy.API.Controllers
     [Route("api/[controller]")]
     public class TrackStorageController : ControllerBase
     {
-        private readonly IMediator _mediator;
+        private readonly ITrackStorageService _trackStorageService;
 
-        public TrackStorageController(IMediator mediator)
+        public TrackStorageController(ITrackStorageService trackStorageService)
         {
-            _mediator = mediator;
+            _trackStorageService = trackStorageService;
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> Create(CreateViewModel model)
+        public async Task<IActionResult> Create(AddTrackStorageRequest request)
         {
-            var result = await _mediator.Send(new CreateStorageCommand(model.Name,
-                model.Description, User!.Identity!.Name!));
+            var result = await _trackStorageService.AddAsync(request);
             return Ok(result);
         }
 
         [HttpDelete("delete")]
-        public async Task<IActionResult> Delete(DeleteViewModel model)
+        public async Task<IActionResult> Delete(Guid trackStorageId)
         {
-            await _mediator.Send(new DeleteTrackStorageCommand(model.TrackStorageId,
-                model.TrackStorageName));
+            await _trackStorageService.DeleteAsync(trackStorageId);
             return NoContent();
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> Update(UpdateViewModel model)
+        public async Task<IActionResult> Update(UpdateTrackStorageRequest request)
         {
-            await _mediator.Send(new UpdateTrackStorageCommand(model.Id, model.Name, model.Description));
+            await _trackStorageService.UpdateAsync(request);
             return Ok();
         }
 
         [HttpGet("get-my")]
         public async Task<IActionResult> GetMy()
         {
-            var userName = User.Identity.Name;
-            var result = await _mediator.Send(new GetMyTrackStorageQuery(userName));
+            var userName = User.Identity!.Name!;
+            var result = await _trackStorageService.GetMyAsync(userName);
             return Ok(result);
         }
     }

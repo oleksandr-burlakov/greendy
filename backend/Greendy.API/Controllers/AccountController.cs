@@ -5,9 +5,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Greendy.API.ViewModels.Account;
-using MediatR;
-using Greendy.BLL.Queries;
-using Greendy.BLL.Commands;
+using Greendy.Application.Interfaces;
 
 namespace Greendy.API.Controllers
 {
@@ -17,12 +15,12 @@ namespace Greendy.API.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IConfiguration _configuration;
-        private readonly IMediator _mediator;
+        private readonly IAccountService _accountService;
         public AccountController(IConfiguration configuration,
-            IMediator mediator)
+            IAccountService accountService)
         {
             _configuration = configuration;
-            _mediator = mediator;
+            _accountService = accountService;
         }
 
 		[Authorize]
@@ -36,12 +34,12 @@ namespace Greendy.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterViewModel model)
         {
-            var isUserAlreadyExists = await _mediator.Send(new IsUserWithUsernameExistsQuery(model.Username));
+            var isUserAlreadyExists = await _accountService.CheckUserExistanceAsync(model.Username);
             if (isUserAlreadyExists) {
                 throw new Exception($"Sorry user with this username: '{model.Username}' already exists");
             }
             var role = "User";
-            var userId = await _mediator.Send(new CreateUserCommand(model.FirstName, model.LastName, model.Username,
+            var userId = await _accountService.RegisterAsync(new Application.DTO.Accounts.RegisterAccountRequest(model.FirstName, model.LastName, model.Username,
                 model.Password, model.Email, model.PhoneNumber, role));
             var token = CreateToken(model.Username, role);
             return Ok(new {Token = token});
@@ -51,7 +49,7 @@ namespace Greendy.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginViewModel model) 
         {
-            var response = await _mediator.Send(new ValidateLoginQuery(model.Login, model.Password));
+            var response = await _accountService.ValidateLoginAsync(model.Login, model.Password);
             var token = CreateToken(response.Username, response.Role); 
             return Ok(new {Token = token});
         }
