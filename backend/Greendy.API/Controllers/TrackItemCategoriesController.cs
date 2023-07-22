@@ -20,8 +20,8 @@ public class TrackItemCategoriesController :  ControllerBase
     [HttpPost("create")]
     public async Task<IActionResult> Create([FromBody] AddTrackItemCategoryRequest request, CancellationToken token)
     {
-        await _trackItemCategoryService.AddAsync(request);
-        return Ok();
+        var id = await _trackItemCategoryService.AddAsync(request);
+        return Ok(id);
     }
 
     [HttpPut("update")] 
@@ -38,7 +38,7 @@ public class TrackItemCategoriesController :  ControllerBase
         return Ok(result);
     }
 
-    [HttpDelete("delete/{id}")]
+    [HttpDelete("delete")]
     public async Task<IActionResult> Delete([FromQuery] Guid trackItemCategoryId, CancellationToken token)
     {
         await _trackItemCategoryService.DeleteAsync(trackItemCategoryId);

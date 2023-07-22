@@ -41,7 +41,7 @@ public class AccountService : IAccountService
 
     public async Task<ValidateLoginResponse> ValidateLoginAsync(string login, string password)
     {
-        var user = await _userRepository.GetByLoginAsync(login);
+        var user = await _userRepository.GetByLoginAsync(login) ?? throw new Exception("User not found");
         var isValid = user.CheckPassword(password);
         var role = await _roleRepository.GetUserRoleAsync(user.UserId);
         return new ValidateLoginResponse(isValid, user.UserName, role.Name);

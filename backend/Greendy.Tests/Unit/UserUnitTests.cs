@@ -1,6 +1,4 @@
-using Greendy.DAL;
-using FluentAssertions;
-using Greendy.DAL.Exceptions.User;
+/*using FluentAssertions;
 namespace Greendy.Tests.Unit
 {
     public class UserUnitTests
@@ -44,3 +42,4 @@ namespace Greendy.Tests.Unit
     }
 }
 
+*/

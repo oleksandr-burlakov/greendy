@@ -17,6 +17,8 @@ public class RoleRepository : IRoleRepository
 
     public async Task<Role> GetUserRoleAsync(Guid userId)
     {
-        return (await _context.UserRoles.FirstOrDefaultAsync(r => r.UserId == userId))?.Role;
+        return (await _context.UserRoles
+            .Include(ur => ur.Role)
+            .FirstOrDefaultAsync(r => r.UserId == userId))?.Role;
     }
 }

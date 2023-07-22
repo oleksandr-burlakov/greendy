@@ -23,6 +23,7 @@ namespace Greendy.API.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create(AddTrackStorageRequest request)
         {
+            request.AuthorName = User.Identity.Name;
             var result = await _trackStorageService.AddAsync(request);
             return Ok(result);
         }

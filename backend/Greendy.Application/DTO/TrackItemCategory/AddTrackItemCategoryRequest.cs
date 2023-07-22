@@ -1,2 +1,6 @@
 namespace Greendy.Application.DTO.TrackItemCategory;
-public record AddTrackItemCategoryRequest(string Name, Guid TrackStorageId);
+public class AddTrackItemCategoryRequest
+{
+    public string Name { get; set; }
+    public Guid TrackStorageId { get; set; }
+}

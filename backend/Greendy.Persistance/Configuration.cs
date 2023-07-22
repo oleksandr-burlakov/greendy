@@ -12,5 +12,6 @@ public static class DependencyInjectionConfiguration
         services.AddTransient<ITrackItemCategoryRepository, TrackItemCategoryRepository>();
         services.AddTransient<ITrackStorageRepository, TrackStorageRepository>();
         services.AddTransient<IUserRoleRepository, UserRoleRepository>();
+        services.AddTransient<ITrackItemRepository, TrackItemRepository>();
     }
 }

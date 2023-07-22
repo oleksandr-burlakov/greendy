@@ -10,5 +10,6 @@ public static class DependencyInjectionConfiguration
         services.AddTransient<IAccountService, AccountService>();
         services.AddTransient<ITrackItemCategoryService, TrackItemCategoryService>();
         services.AddTransient<ITrackStorageService, TrackStorageService>();
+        services.AddTransient<ITrackItemService, TrackItemService>();
     }
 }
